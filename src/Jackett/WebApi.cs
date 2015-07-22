@@ -176,6 +176,8 @@ namespace Jackett
             {
                 jsonReply["result"] = "error";
                 jsonReply["error"] = ex.Message;
+
+                Program.LoggerInstance.Error(ex, "Error testing Sonarr");
             }
             return jsonReply;
         }
@@ -193,6 +195,8 @@ namespace Jackett
             {
                 jsonReply["result"] = "error";
                 jsonReply["error"] = ex.Message;
+
+                Program.LoggerInstance.Error(ex, "Error applying Sonarr config");
             }
             return jsonReply;
         }
@@ -209,6 +213,8 @@ namespace Jackett
             {
                 jsonReply["result"] = "error";
                 jsonReply["error"] = ex.Message;
+
+                Program.LoggerInstance.Error(ex, "Error getting Sonarr config");
             }
             return Task.FromResult<JToken>(jsonReply);
         }
@@ -238,6 +244,8 @@ namespace Jackett
             {
                 jsonReply["result"] = "error";
                 jsonReply["error"] = ex.Message;
+
+                Program.LoggerInstance.Error(ex, "Error handling config form");
             }
             return jsonReply;
         }
@@ -259,10 +267,13 @@ namespace Jackett
             {
                 jsonReply["result"] = "error";
                 jsonReply["error"] = ex.Message;
+                
                 if (ex is ExceptionWithConfigData)
                 {
                     jsonReply["config"] = ((ExceptionWithConfigData)ex).ConfigData.ToJson();
                 }
+
+                Program.LoggerInstance.Error(ex, "Error configuring indexer");
             }
             return jsonReply;
         }
@@ -293,6 +304,8 @@ namespace Jackett
             {
                 jsonReply["result"] = "error";
                 jsonReply["error"] = ex.Message;
+
+                Program.LoggerInstance.Error(ex, "Error getting indexers");
             }
             return Task.FromResult<JToken>(jsonReply);
         }
@@ -313,6 +326,8 @@ namespace Jackett
             {
                 jsonReply["result"] = "error";
                 jsonReply["error"] = ex.Message;
+
+                Program.LoggerInstance.Error(ex, "Error testing indexer");
             }
             return jsonReply;
         }
@@ -330,6 +345,8 @@ namespace Jackett
             {
                 jsonReply["result"] = "error";
                 jsonReply["error"] = ex.Message;
+
+                Program.LoggerInstance.Error(ex, "Error deleting indexer");
             }
             return jsonReply;
         }
@@ -348,11 +365,15 @@ namespace Jackett
             {
                 jsonReply["result"] = "error";
                 jsonReply["error"] = ex.Message;
+
+                Program.LoggerInstance.Error(ex, "Error configuring Jackett");
             }
             catch (Exception ex)
             {
                 jsonReply["result"] = "error";
                 jsonReply["error"] = ex.Message;
+
+                Program.LoggerInstance.Error(ex, "Error configuring Jackett");
             }
             return Task.FromResult<JToken>(jsonReply);
         }
@@ -372,6 +393,8 @@ namespace Jackett
             {
                 jsonReply["result"] = "error";
                 jsonReply["error"] = ex.Message;
+
+                Program.LoggerInstance.Error(ex, "Error applying Jackett config");
             }
             return jsonReply;
         }
